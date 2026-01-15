@@ -40,4 +40,13 @@ return {
 			vim.cmd("colorscheme duskfox")
 		end,
 	},
+	
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 999,
+		opts = {
+			transparent = true,
+		},
+	},
 }
