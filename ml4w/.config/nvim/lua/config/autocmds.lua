@@ -48,3 +48,37 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- 	group = lsp_on_attach_group,
 -- 	callback = on_attach,
 -- })
+
+-- Add to the end of your autocmds. lua file
+
+-- Apply custom transparency settings after colorscheme loads
+vim.api.nvim_create_augroup("CustomTransparency", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = "CustomTransparency",
+	pattern = "duskfox",
+	callback = function()
+		-- Get duskfox palette
+		local palette = require("nightfox.palette").load("duskfox")
+		
+		-- Set highlights with semi-transparent backgrounds
+		vim.api.nvim_set_hl(0, "Visual", { bg = palette.bg1 })
+		vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = palette.bg1 })
+		vim.api.nvim_set_hl(0, "Search", { bg = palette.sel0, fg = palette.fg1 })
+		vim.api.nvim_set_hl(0, "IncSearch", { bg = palette.sel0, fg = palette.fg1 })
+	end,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = "CustomTransparency",
+	pattern = "tokyonight*",
+	callback = function()
+		-- Get tokyonight colors
+		local colors = require("tokyonight.colors").setup()
+		
+		-- Set highlights with semi-transparent backgrounds
+		vim.api.nvim_set_hl(0, "Visual", { bg = colors.bg_visual })
+		vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = colors. bg_highlight })
+		vim.api.nvim_set_hl(0, "Search", { bg = colors.orange, fg = colors.bg })
+		vim.api.nvim_set_hl(0, "IncSearch", { bg = colors.orange, fg = colors.bg })
+	end,
+})
